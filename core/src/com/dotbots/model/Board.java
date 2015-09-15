@@ -1,9 +1,6 @@
 package com.dotbots.model;
 
-import com.badlogic.gdx.Gdx;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Board {
@@ -49,6 +46,7 @@ public class Board {
     if (resetting) {
       resetUpdate();
     }
+    checkSuccess();
   }
 
   // make move
@@ -72,6 +70,7 @@ public class Board {
     }
   }
 
+  // TODO - hopefully this can be optimized
   private boolean canMove(float x, float y, int dir) {
     switch (dir) {
       case 0:
@@ -173,6 +172,17 @@ public class Board {
       undoMove();
     } else {
       resetting = false;
+    }
+  }
+
+  // checks if piece made it to the goal
+  // ----------------------------------------------------------------------------------------------
+
+  private void checkSuccess() {
+    Piece piece = goal.getPiece();
+    if (goal.getX() == piece.getX() && goal.getY() == piece.getY()) {
+      // TODO - fun animation
+      // TODO - display continue button
     }
   }
 

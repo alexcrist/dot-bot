@@ -193,7 +193,11 @@ public class Board {
 
   public void next() {
     moves = new ArrayList<Move>();
-    goal = new Goal(BoardFactory.createGoal(size, pieces, walls));
+    Goal newGoal;
+    do {
+      newGoal = new Goal(BoardFactory.createGoal(size, pieces, walls));
+    } while (goal.getPiece().equals(newGoal.getPiece()));
+    goal = newGoal;
   }
 
   // getters & setters

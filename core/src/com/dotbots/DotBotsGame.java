@@ -24,7 +24,7 @@ public class DotBotsGame extends ApplicationAdapter {
   private InterfaceDrawer interfaceDrawer;
 
   @Override
-  public void create () {
+  public void create() {
     // get screen width and height
     int w = Gdx.graphics.getWidth();
     int h = Gdx.graphics.getHeight();
@@ -48,7 +48,7 @@ public class DotBotsGame extends ApplicationAdapter {
   }
 
   @Override
-  public void render () {
+  public void render() {
     // set up the screen
     Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

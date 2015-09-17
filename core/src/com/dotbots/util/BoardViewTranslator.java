@@ -24,6 +24,9 @@ public class BoardViewTranslator {
   public final float wallWidth;
   public final float wallLength;
 
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
   public BoardViewTranslator(Board board, float screenWidth, float screenHeight) {
     this.board = board;
     this.translatedBoard = new Board(board);
@@ -41,6 +44,9 @@ public class BoardViewTranslator {
 
     translate();
   }
+
+  // translate all the things
+  // ----------------------------------------------------------------------------------------------
 
   public void translate() {
     for (int i = 0; i < board.getPieces().size(); i++) {

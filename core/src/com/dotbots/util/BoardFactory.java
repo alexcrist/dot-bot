@@ -57,7 +57,7 @@ public class BoardFactory {
   }
 
   // TODO - this should be optimized
-  private static Goal createGoal(int size, List<Piece> pieces, List<Wall> walls) {
+  public static Goal createGoal(int size, List<Piece> pieces, List<Wall> walls) {
     Random rand = new Random();
     int randNum = rand.nextInt(pieces.size());
     Piece piece = pieces.get(randNum);

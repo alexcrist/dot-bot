@@ -1,5 +1,7 @@
 package com.dotbots.model;
 
+import com.dotbots.util.BoardFactory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class Board {
   private List<Move> moves;
 
   private boolean resetting;
+  private boolean success;
 
   // constructors
   // ----------------------------------------------------------------------------------------------
@@ -23,6 +26,7 @@ public class Board {
     this.goal = goal;
     this.moves = new ArrayList<Move>();
     this.resetting = false;
+    this.success = false;
   }
 
   public Board(Board board) {
@@ -32,8 +36,9 @@ public class Board {
     this.size = board.getSize();
     for (Piece piece : board.getPieces()) { this.pieces.add(new Piece(piece)); }
     for (Wall wall : board.getWalls()) { this.walls.add(new Wall(wall)); }
-    for (Move move : board.getDirs()) { this.moves.add(new Move(move));  }
-    this.resetting = board.resetting;
+    for (Move move : board.getMoves()) { this.moves.add(new Move(move));  }
+    this.resetting = board.getResetting();
+    this.success = board.getSuccess();
   }
 
   // update
@@ -148,7 +153,7 @@ public class Board {
   // undo move
   // ---------------------------------------------------------------------------------------------
 
-  public void undoMove() {
+  public void undo() {
     if (moves.size() > 0) {
       Move lastMove = moves.get(moves.size() - 1);
       Piece piece = lastMove.getPiece();
@@ -169,7 +174,7 @@ public class Board {
 
   private void resetUpdate() {
     if (moves.size() > 0) {
-      undoMove();
+      undo();
     } else {
       resetting = false;
     }
@@ -180,10 +185,15 @@ public class Board {
 
   private void checkSuccess() {
     Piece piece = goal.getPiece();
-    if (goal.getX() == piece.getX() && goal.getY() == piece.getY()) {
-      // TODO - fun animation
-      // TODO - display continue button
-    }
+    success = goal.getX() == piece.getX() && goal.getY() == piece.getY();
+  }
+
+  // next goal
+  // ----------------------------------------------------------------------------------------------
+
+  public void next() {
+    moves = new ArrayList<Move>();
+    goal = new Goal(BoardFactory.createGoal(size, pieces, walls));
   }
 
   // getters & setters
@@ -192,6 +202,8 @@ public class Board {
   public List<Piece> getPieces() { return pieces; }
   public List<Wall> getWalls() { return walls; }
   public Goal getGoal() { return goal; }
-  public List<Move> getDirs() { return moves; }
+  public List<Move> getMoves() { return moves; }
   public int getSize() { return size; }
+  public boolean getResetting() { return resetting; }
+  public boolean getSuccess() { return success; }
 }

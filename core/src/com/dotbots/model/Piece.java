@@ -10,6 +10,9 @@ public class Piece {
   private float destX;
   private float destY;
 
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
   public Piece(float x, float y, Color color) {
     this.x = x;
     this.y = y;
@@ -23,6 +26,9 @@ public class Piece {
     this.y = piece.getY();
     this.color = piece.getColor();
   }
+
+  // update
+  // ----------------------------------------------------------------------------------------------
 
   public void update() {
     float speed = .3f;
@@ -38,11 +44,12 @@ public class Piece {
     }
   }
 
+  // getters & setters
+  // ----------------------------------------------------------------------------------------------
+
   public float getX() { return x; }
   public float getY() { return y; }
   public Color getColor() { return color; }
-  public float getDestX() { return destX; }
-  public float getDestY() { return destY; }
   public boolean isStill() { return x == destX && y == destY; }
 
   public void setX(float x) { this.x = x; }

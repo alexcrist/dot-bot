@@ -10,6 +10,9 @@ public class Wall {
        left. 3 = up and left. */
   private int dir;
 
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
   public Wall(float x, float y, int dir) {
     this.x = x;
     this.y = y;
@@ -21,6 +24,9 @@ public class Wall {
     y = wall.getY();
     dir = wall.getDir();
   }
+
+  // getters & setters
+  // ----------------------------------------------------------------------------------------------
 
   public float getX() { return x; }
   public float getY() { return y; }

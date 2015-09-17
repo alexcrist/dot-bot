@@ -19,6 +19,9 @@ public class InputHandler implements InputProcessor {
   private float touchX;
   private float touchY;
 
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
   public InputHandler(Board board, BoardViewTranslator bvt, List<Button> buttons, int screenHeight) {
     this.board = board;
     this.bvt = bvt;
@@ -26,6 +29,9 @@ public class InputHandler implements InputProcessor {
     this.screenHeight = screenHeight;
     touched = false;
   }
+
+  // get touch input
+  // ----------------------------------------------------------------------------------------------
 
   // An important thing to note is the difference in coordinate systems between the drawer and the
   //   input processor: The drawer (and bvt) say y = 0 is the bottom of the screen. The
@@ -55,7 +61,7 @@ public class InputHandler implements InputProcessor {
     return true;
   }
 
-  // touch checks
+  // check what was touched
   // ----------------------------------------------------------------------------------------------
 
   private void checkPieceTouched(int x, int y) {
@@ -77,14 +83,18 @@ public class InputHandler implements InputProcessor {
     for (Button button : buttons) {
       // The reason we nest the ifs is so that if any condition fails, it doesn't even check the
       //   others - hence a small performance increase.
-      if (x >= button.getX()) {
-        if (x <= button.getX() + button.getWidth()) {
-          if(y >= button.getY()) {
-            if (y <= button.getY() + button.getHeight()) {
-              if (button.getLabel().equals("undo")) {
-                board.undoMove();
-              } else if (button.getLabel().equals("reset")) {
-                board.reset();
+      if (button.isVisible()) {
+        if (x >= button.getX()) {
+          if (x <= button.getX() + button.getWidth()) {
+            if (y >= button.getY()) {
+              if (y <= button.getY() + button.getHeight()) {
+                if (button.getLabel().equals("undo")) {
+                  board.undo();
+                } else if (button.getLabel().equals("reset")) {
+                  board.reset();
+                } else if (button.getLabel().equals("next")) {
+                  board.next();
+                }
               }
             }
           }
@@ -113,7 +123,7 @@ public class InputHandler implements InputProcessor {
     }
   }
 
-  // unused inputs
+  // unused touch inputs
   // ----------------------------------------------------------------------------------------------
 
   @Override public boolean keyDown(int keycode) { return false; }

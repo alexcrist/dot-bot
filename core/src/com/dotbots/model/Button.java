@@ -13,8 +13,13 @@ public class Button {
   private float height;
   private Color color;
   private Texture icon;
+  private boolean visible;
 
-  public Button(String label, float x, float y, float width, float height, Color color, String src) {
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
+  public Button(String label, float x, float y, float width, float height, Color color,
+                String src, boolean visible) {
     this.label = label;
     this.x = x;
     this.y = y;
@@ -22,7 +27,11 @@ public class Button {
     this.height = height;
     this.color = color;
     this.icon = new Texture(Gdx.files.internal(src));
+    this.visible = visible;
   }
+
+  // getters & setters
+  // ----------------------------------------------------------------------------------------------
 
   public String getLabel() { return label; }
   public float getX() { return x; }
@@ -31,4 +40,7 @@ public class Button {
   public float getHeight() { return height; }
   public Color getColor() { return color; }
   public Texture getIcon() { return icon; }
+  public boolean isVisible() { return visible; }
+
+  public void setVisible(boolean visible) { this.visible = visible; }
 }

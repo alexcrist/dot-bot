@@ -9,6 +9,9 @@ public class Goal {
   private Color color;
   private Piece piece;
 
+  // constructors
+  // ----------------------------------------------------------------------------------------------
+
   public Goal(float x, float y, Color color, Piece piece) {
     this.x = x;
     this.y = y;
@@ -20,8 +23,11 @@ public class Goal {
     this.x = goal.getX();
     this.y = goal.getY();
     this.color = goal.getColor();
-    this.piece = goal.piece; // it is intentional that we are not creating a new piece
+    this.piece = goal.getPiece(); // it is intentional that we are not creating a new piece object
   }
+
+  // getters & setters
+  // ----------------------------------------------------------------------------------------------
 
   public float getX() { return x; }
   public float getY() { return y; }

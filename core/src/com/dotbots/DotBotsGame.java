@@ -37,10 +37,11 @@ public class DotBotsGame extends ApplicationAdapter {
     buttons = new ArrayList<Button>();
     buttons.add(ButtonFactory.createReset(bvt));
     buttons.add(ButtonFactory.createUndo(bvt));
+    buttons.add(ButtonFactory.createNext(bvt));
 
     // new drawers
     boardDrawer = new BoardDrawer(bvt);
-    interfaceDrawer = new InterfaceDrawer(buttons);
+    interfaceDrawer = new InterfaceDrawer(board, bvt, buttons);
 
     // handle input
     Gdx.input.setInputProcessor(new InputHandler(board, bvt, buttons, h));

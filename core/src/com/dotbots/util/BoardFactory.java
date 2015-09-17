@@ -61,16 +61,15 @@ public class BoardFactory {
     Random rand = new Random();
     int randNum = rand.nextInt(pieces.size());
     Piece piece = pieces.get(randNum);
-    Color color = piece.getColor();
 
     List<Goal> goals = new ArrayList<Goal>();
     for (Wall wall : walls) {
       float x = wall.getX();
       float y = wall.getY();
-      Goal goal0 = new Goal(x, y - 1, color, piece);
-      Goal goal1 = new Goal(x, y, color, piece);
-      Goal goal2 = new Goal(x - 1, y, color, piece);
-      Goal goal3 = new Goal(x - 1, y - 1, color, piece);
+      Goal goal0 = new Goal(x, y - 1, piece);
+      Goal goal1 = new Goal(x, y, piece);
+      Goal goal2 = new Goal(x - 1, y, piece);
+      Goal goal3 = new Goal(x - 1, y - 1, piece);
       goals.add(goal0);
       goals.add(goal1);
       goals.add(goal2);

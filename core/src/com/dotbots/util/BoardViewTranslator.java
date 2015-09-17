@@ -29,7 +29,7 @@ public class BoardViewTranslator {
 
   public BoardViewTranslator(Board board, float screenWidth, float screenHeight) {
     this.board = board;
-    this.translatedBoard = new Board(board);
+    init();
 
     boardWidth = screenWidth * .9f;
     boardOriginX = (screenWidth - boardWidth) / 2;
@@ -43,6 +43,14 @@ public class BoardViewTranslator {
     wallLength = spotWidth + gridWidth;
 
     translate();
+  }
+
+  // initialize translated board
+  // ----------------------------------------------------------------------------------------------
+
+  // this method is used when one of Board's objects is recreated such as a new goal being created
+  public void init() {
+    translatedBoard = new Board(board);
   }
 
   // translate all the things

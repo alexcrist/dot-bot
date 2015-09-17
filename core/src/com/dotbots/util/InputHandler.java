@@ -94,6 +94,7 @@ public class InputHandler implements InputProcessor {
                   board.reset();
                 } else if (button.getLabel().equals("next")) {
                   board.next();
+                  bvt.init(); // necessary to reinitialize goal
                 }
               }
             }

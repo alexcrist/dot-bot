@@ -19,7 +19,6 @@ public class DotBotsGame extends ApplicationAdapter {
 
   private Board board;
   private BoardViewTranslator bvt;
-  private List<Button> buttons;
   private BoardDrawer boardDrawer;
   private InterfaceDrawer interfaceDrawer;
 
@@ -34,7 +33,7 @@ public class DotBotsGame extends ApplicationAdapter {
     bvt = new BoardViewTranslator(board, w, h);
 
     // new buttons
-    buttons = new ArrayList<Button>();
+    List<Button> buttons = new ArrayList<Button>();
     buttons.add(ButtonFactory.createReset(bvt));
     buttons.add(ButtonFactory.createUndo(bvt));
     buttons.add(ButtonFactory.createNext(bvt));

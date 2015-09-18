@@ -28,7 +28,7 @@ public class InterfaceDrawer {
     this.buttons = buttons;
     batch = new SpriteBatch();
     renderer = new ShapeRenderer();
-    font = new BitmapFont(Gdx.files.internal("auto.fnt"), Gdx.files.internal("auto.png"), false);
+    font = new BitmapFont(Gdx.files.internal("auto.fnt"), false);
   }
 
   // draw
@@ -69,7 +69,7 @@ public class InterfaceDrawer {
 
   private void drawMoveCount() {
     float x = bvt.boardOriginX;
-    float y = bvt.boardOriginY + bvt.boardWidth + bvt.boardOriginX;
+    float y = bvt.boardOriginY + bvt.boardWidth + bvt.boardOriginX + font.getCapHeight();
     font.draw(batch, Integer.toString(board.getMoves().size()), x, y);
   }
 }

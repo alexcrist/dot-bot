@@ -56,7 +56,7 @@ public class BoardFactory {
     return walls;
   }
 
-  // TODO - this should be optimized
+  // TODO - this whole method is sloppy, should be optimized
   public static Goal createGoal(int size, List<Piece> pieces, List<Wall> walls) {
     Random rand = new Random();
     int randNum = rand.nextInt(pieces.size());
@@ -83,7 +83,14 @@ public class BoardFactory {
     }
     List<Goal> potentialGoals = new ArrayList<Goal>();
     for (Goal goal : goals) {
-      if (!(goal.getX() < 0 || goal.getX() > size - 1 || goal.getY() < 0 || goal.getY() > size - 1)) {
+      boolean spawn = true;
+      for (Piece each : pieces) {
+        if (each.getX() == goal.getX() && each.getY() == goal.getY()) {
+          spawn = false;
+        }
+      }
+      if (spawn && !(goal.getX() < 0 || goal.getX() > size - 1 || goal.getY() < 0
+          || goal.getY() > size - 1)) {
         potentialGoals.add(goal);
       }
     }
@@ -95,10 +102,11 @@ public class BoardFactory {
   // ----------------------------------------------------------------------------------------------
 
   final static Color[] pieceColors = {
-      Color.valueOf("F44336"),
-      Color.valueOf("2196F3"),
-      Color.valueOf("4CAF50"),
-      Color.valueOf("9C27B0") };
+      Color.valueOf("FFAA00"),
+      Color.valueOf("FF00AA"),
+      Color.valueOf("AA00FF"),
+      Color.valueOf("00AAFF")
+  };
 
   // keys for pieces
   // ----------------------------------------------------------------------------------------------

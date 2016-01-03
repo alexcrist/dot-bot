@@ -20,6 +20,7 @@ public class BoardViewTranslator {
 
   public final float spotWidth;
   public final float pieceRadius;
+  public final float pieceGlowRadius;
   public final float gridWidth;
   public final float wallWidth;
   public final float wallLength;
@@ -37,6 +38,7 @@ public class BoardViewTranslator {
 
     spotWidth = boardWidth / board.getSize();
     pieceRadius = spotWidth * .4f;
+    pieceGlowRadius = pieceRadius * 2;
 
     gridWidth = screenWidth / 270;
     wallWidth = gridWidth * 3;
@@ -60,6 +62,7 @@ public class BoardViewTranslator {
     for (int i = 0; i < board.getPieces().size(); i++) {
       translatedBoard.getPieces().get(i).setX(translatePieceX(board.getPieces().get(i)));
       translatedBoard.getPieces().get(i).setY(translatePieceY(board.getPieces().get(i)));
+      translatedBoard.getPieces().get(i).setIsTouched(board.getPieces().get(i).isTouched());
     }
     for (int i = 0; i < board.getWalls().size(); i++) {
       translatedBoard.getWalls().get(i).setX(translateWallX(board.getWalls().get(i)));

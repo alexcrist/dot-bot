@@ -9,6 +9,7 @@ public class Piece {
   private Color color;
   private float destX;
   private float destY;
+  private boolean isTouched;
 
   // constructors
   // ----------------------------------------------------------------------------------------------
@@ -19,12 +20,14 @@ public class Piece {
     this.color = color;
     this.destX = x;
     this.destY = y;
+    this.isTouched = false;
   }
 
   public Piece(Piece piece) {
     this.x = piece.getX();
     this.y = piece.getY();
     this.color = piece.getColor();
+    this.isTouched = piece.isTouched();
   }
 
   // update
@@ -51,9 +54,11 @@ public class Piece {
   public float getY() { return y; }
   public Color getColor() { return color; }
   public boolean isStill() { return x == destX && y == destY; }
+  public boolean isTouched() { return isTouched; }
 
   public void setX(float x) { this.x = x; }
   public void setY(float y) { this.y = y; }
   public void setDestX(float destX) { this.destX = destX; }
   public void setDestY(float destY) { this.destY = destY; }
+  public void setIsTouched(boolean isTouched) { this.isTouched = isTouched; }
 }

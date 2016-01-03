@@ -51,6 +51,7 @@ public class DotBotsGame extends ApplicationAdapter {
     // set up the screen
     Gdx.gl.glClearColor(.9f, .9f, .9f, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+    Gdx.gl.glEnable(GL20.GL_BLEND);
 
     // draw all the things
     board.update();

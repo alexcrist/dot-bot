@@ -1,6 +1,9 @@
 package com.dotbots.util;
 
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.dotbots.model.Piece;
+import com.dotbots.model.Wall;
 
 public class BoardDrawer {
 
@@ -26,6 +29,7 @@ public class BoardDrawer {
     drawBorder();
     drawWalls();
     drawPieces();
+    drawPieceGlow();
 
     renderer.end();
   }
@@ -50,7 +54,8 @@ public class BoardDrawer {
   }
 
   private void drawGoal() {
-    renderer.setColor(bvt.getGoal().getColor());
+    Color c = bvt.getGoal().getColor();
+    renderer.setColor(c.r, c.g, c.b, .75f);
     renderer.rect(bvt.getGoal().getX(), bvt.getGoal().getY(), bvt.spotWidth - bvt.gridWidth, bvt.spotWidth - bvt.gridWidth);
   }
 
@@ -65,15 +70,25 @@ public class BoardDrawer {
   }
 
   private void drawPieces() {
-    for (com.dotbots.model.Piece piece : bvt.getPieces()) {
+    for (Piece piece : bvt.getPieces()) {
       renderer.setColor(piece.getColor());
       renderer.circle(piece.getX(), piece.getY(), bvt.pieceRadius);
     }
   }
 
+  private void drawPieceGlow() {
+    for (Piece piece : bvt.getPieces()) {
+      if (piece.isTouched()) {
+        Color c = piece.getColor();
+        renderer.setColor(c.r, c.g, c.b, .35f);
+        renderer.circle(piece.getX(), piece.getY(), bvt.pieceGlowRadius);
+      }
+    }
+  }
+
   private void drawWalls() {
     renderer.setColor(.3f, .3f, .3f, 1);
-    for (com.dotbots.model.Wall wall : bvt.getWalls()) {
+    for (Wall wall : bvt.getWalls()) {
       switch (wall.getDir()) {
         case 0:
           drawWallSegment(wall.getX(), wall.getY(), true);

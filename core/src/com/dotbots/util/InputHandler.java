@@ -27,7 +27,7 @@ public class InputHandler implements InputProcessor {
     this.bvt = bvt;
     this.buttons = buttons;
     this.screenHeight = screenHeight;
-    touched = false;
+    this.touched = false;
   }
 
   // get touch input
@@ -57,6 +57,9 @@ public class InputHandler implements InputProcessor {
 
   @Override
   public boolean touchUp(int x, int y, int pointer, int button) {
+    if (touchedPiece != null) {
+      touchedPiece.setIsTouched(false);
+    }
     touched = false;
     return true;
   }
@@ -75,6 +78,7 @@ public class InputHandler implements InputProcessor {
         touchY = y;
         touched = true;
         touchedPiece = piece;
+        piece.setIsTouched(true);
       }
     }
   }
@@ -119,6 +123,7 @@ public class InputHandler implements InputProcessor {
           dir = dx > 0 ? 1 : 3;
         }
         touched = false;
+        touchedPiece.setIsTouched(false);
         board.makeMove(touchedPiece, dir);
       }
     }
